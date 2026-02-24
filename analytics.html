@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta 
+    name="description" 
+    content="YumTask Analytics Page"/>
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/general.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/queries.css" />
+
+    <script
+      defer
+      src="https://unpkg.com/smoothscroll-polyfill@0.4.4/dist/smoothscroll.min.js"
+    ></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script defer src="js/script.js"></script>
+
+      <title>Analytics | YumTask</title>
+  </head>
+  <body>
+    <header class="header">
+      <a href="index.html">
+        <img class="logo" alt="YumTask logo" src="img/yumtask-logo.png" />
+      </a>
+
+      <nav class="main-nav">
+        <ul class="main-nav-list">
+        <li><a class="main-nav-link" href="index.html">Home</a></li>
+        <li><a class="main-nav-link" href="tasks.html">Tasks</a></li>
+        <li><a class="main-nav-link active" href="analytics.html" aria-current="page">Analytics</a></li>
+        <li><a class="main-nav-link" href="about.html">About Us</a></li>
+        <li><a class="main-nav-link" href="contact.html">Contact</a></li>
+        <li><a class="main-nav-link" href="recipes&pricing.html">Recipes & Pricing</a></li>
+      </ul>
+    </nav>
+    
+      <button class="btn-mobile-nav">
+        <ion-icon class="icon-mobile-nav" name="menu-outline"></ion-icon>
+        <ion-icon class="icon-mobile-nav" name="close-outline"></ion-icon>
+      </button>
+
+      <button id="darkToggle" aria-label="Toggle Dark Mode"> Dark Mode </button>
+    </header>
+
+<main class="py-5">
+
+  <div class="analytics-wrapper">
+
+    <h2 class="heading-secondary center-text">Analytics Overview</h2>
+
+    <!-- ================= CHART CARD ================= -->
+    <div class="analytics-chart-card">
+      <h4>Completed vs Pending Tasks</h4>
+      <canvas id="taskChart"></canvas>
+    </div>
+
+    <!-- ================= STATS GRID ================= -->
+    <div class="stats-grid">
+
+      <!-- Total Tasks -->
+      <div class="analytics-stat-card">
+        <div class="stat-icon">
+          <ion-icon name="list-outline"></ion-icon>
+        </div>
+        <h5>Total Tasks</h5>
+        <p id="analytics-total">0</p>
+      </div>
+
+      <!-- Completion Rate -->
+      <div class="analytics-stat-card">
+        <div class="stat-icon">
+          <ion-icon name="checkmark-done-outline"></ion-icon>
+        </div>
+        <h5>Completion Rate</h5>
+        <p id="analytics-rate">0%</p>
+
+        <!-- Progress Bar -->
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+      </div>
+
+      <!-- High Priority -->
+      <div class="analytics-stat-card">
+        <div class="stat-icon">
+          <ion-icon name="alert-circle-outline"></ion-icon>
+        </div>
+        <h5>High Priority</h5>
+        <p id="analytics-high">0</p>
+      </div>
+
+    </div>
+
+    <!-- ================= BACK BUTTON ================= -->
+    <div class="back-wrapper">
+      <a href="tasks.html" class="analytics-back-btn">
+        ← Back to Task Management
+      </a>
+    </div>
+
+  </div>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+    <footer class="footer">
+      <div class="container grid grid--footer">
+        <div class="logo-col">
+          <a href="index.html" class="footer-logo">
+            <img class="logo" alt="YumTask logo" src="img/yumtask-logo.png" />
+          </a>
+
+          <ul class="social-links">
+            <li>
+              <a class="footer-link" href="index.html"
+                ><ion-icon class="social-icon" name="logo-instagram"></ion-icon
+              ></a>
+            </li>
+            <li>
+              <a class="footer-link" href="index.html"
+                ><ion-icon class="social-icon" name="logo-facebook"></ion-icon
+              ></a>
+            </li>
+            <li>
+              <a class="footer-link" href="index.html"
+                ><ion-icon class="social-icon" name="logo-twitter"></ion-icon
+              ></a>
+            </li>
+          </ul>
+
+          <p class="copyright">
+            Copyright &copy; <span class="year">2026</span> by YumTask, Inc.
+            All rights reserved.
+          </p>
+        </div>
+
+        <div class="address-col">
+          <p class="footer-heading">Contact us</p>
+          <address class="contacts">
+            <p class="address">
+              Gravias 6, Agia Paraskevi, 153 42
+            </p>
+            <p>
+              <a class="footer-link" href="tel:415-201-6370">210 0600 9800</a
+              ><br />
+              <a class="footer-link" href="mailto:hello@yumtask.com"
+                >hello@yumtask.com</a
+              >
+            </p>
+          </address>
+        </div>
+
+        <nav class="nav-col">
+          <p class="footer-heading">Account</p>
+          <ul class="footer-nav">
+            <li><a class="footer-link" href="index.html#cta">Create account</a></li>
+            <li><a class="footer-link" href="contact.html">Contact Us</a></li>
+          </ul>
+        </nav>
+
+        <nav class="nav-col">
+          <p class="footer-heading">Company</p>
+          <ul class="footer-nav">
+            <li><a class="footer-link" href="about.html">About YumTask</a></li>
+            <li><a class="footer-link" href="tasks.html">Tasks</a></li>
+            <li><a class="footer-link" href="analytics.html">Analytics</a></li>
+          </ul>
+        </nav>
+
+        <nav class="nav-col">
+          <p class="footer-heading">Resources</p>
+          <ul class="footer-nav">
+            <li><a class="footer-link" href="recipes&pricing.html#meals">Recipe directory </a></li>
+            <li><a class="footer-link" href="index.html">Help center</a></li>
+            <li><a class="footer-link" href="index.html">Privacy & terms</a></li>
+          </ul>
+        </nav>
+      </div>
+    </footer>
+  </body>
+</html>
+

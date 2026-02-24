@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta 
+    name="description" 
+    content="YumTask Task Management Page"/>
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/general.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/queries.css" />
+    
+    <script
+      defer
+      src="https://unpkg.com/smoothscroll-polyfill@0.4.4/dist/smoothscroll.min.js"
+    ></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script defer src="js/script.js"></script>
+
+    <title>Tasks | YumTask</title>
+  </head>
+  <body>
+    <header class="header">
+      <a href="index.html">
+        <img class="logo" alt="YumTask logo" src="img/yumtask-logo.png" />
+      </a>
+
+      <nav class="main-nav">
+        <ul class="main-nav-list">
+        <li><a class="main-nav-link" href="index.html">Home</a></li>
+        <li><a class="main-nav-link active" href="tasks.html" aria-current="page">Tasks</a></li>
+        <li><a class="main-nav-link" href="analytics.html">Analytics</a></li>
+        <li><a class="main-nav-link" href="about.html">About Us</a></li>
+        <li><a class="main-nav-link" href="contact.html">Contact</a></li>
+        <li><a class="main-nav-link" href="recipes&pricing.html">Recipes & Pricing</a></li>
+      </ul>
+    </nav>
+
+      <button class="btn-mobile-nav">
+        <ion-icon class="icon-mobile-nav" name="menu-outline"></ion-icon>
+        <ion-icon class="icon-mobile-nav" name="close-outline"></ion-icon>
+      </button>
+
+      <button id="darkToggle" aria-label="Toggle Dark Mode"> Dark Mode </button>
+    </header>
+
+<main class="py-5">
+
+  <div class="container">
+
+    <h2 class="heading-secondary center-text">Task Management</h2>
+
+    <!-- ================= TASK FORM ================= -->
+    <form id="task-form" class="row g-3 mb-4">
+
+      <div class="col-md-3">
+        <label for="task-name" class="form-label">Task Name</label>
+        <input type="text" id="task-name" class="form-control" required>
+      </div>
+
+      <div class="col-md-3">
+        <label for="task-desc" class="form-label">Description</label>
+        <input type="text" id="task-desc" class="form-control" required>
+      </div>
+
+      <div class="col-md-2">
+        <label for="task-date" class="form-label">Due Date</label>
+        <input type="date" id="task-date" class="form-control" required>
+      </div>
+
+      <div class="col-md-2">
+        <label for="task-priority" class="form-label">Priority</label>
+        <select id="task-priority" class="form-select">
+          <option value="Low">Low</option>
+          <option value="Medium">Medium</option>
+          <option value="High">High</option>
+        </select>
+      </div>
+
+      <div class="col-md-2 d-flex align-items-end">
+        <button type="submit" class="btn btn-primary w-100">Add Task</button>
+      </div>
+
+    </form>
+
+    <!-- ================= FILTERS ================= -->
+    <div class="row mb-4">
+
+      <div class="col-md-4">
+        <label class="form-label">Filter by Status</label>
+        <select id="filter-status" class="form-select">
+          <option value="all">All</option>
+          <option value="completed">Completed</option>
+          <option value="pending">Pending</option>
+        </select>
+      </div>
+
+      <div class="col-md-4">
+        <label class="form-label">Filter by Priority</label>
+        <select id="filter-priority" class="form-select">
+          <option value="all">All Priorities</option>
+          <option value="High">High</option>
+          <option value="Medium">Medium</option>
+          <option value="Low">Low</option>
+        </select>
+      </div>
+
+      <div class="col-md-4">
+        <label class="form-label">Sort Tasks</label>
+        <select id="sort-tasks" class="form-select">
+          <option value="none">Sort By</option>
+          <option value="name">Task Name</option>
+          <option value="date">Due Date</option>
+        </select>
+      </div>
+
+    </div>
+
+    <!-- ================= TASK TABLE ================= -->
+    <table id="task-table" class="table table-striped table-bordered" aria-label="Task list table">
+      <thead class="table-dark">
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Description</th>
+          <th scope="col">Due Date</th>
+          <th scope="col">Priority</th>
+          <th scope="col">Status</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <!-- ================= SUMMARY ================= -->
+    <div id="task-summary" class="row text-center mt-4">
+      <div class="col-md-4">
+        <h5>Total Tasks</h5>
+        <p id="total-tasks">0</p>
+      </div>
+      <div class="col-md-4">
+        <h5>Completed</h5>
+        <p id="completed-tasks">0</p>
+      </div>
+      <div class="col-md-4">
+        <h5>Pending</h5>
+        <p id="pending-tasks">0</p>
+      </div>
+    </div>
+
+    <hr class="my-5">
+
+    <!-- ================= ANALYTICS ================= -->
+    <section class="text-center">
+      <h2 class="mb-4">Task Analytics Dashboard</h2>
+      <canvas id="taskChart" style="max-width:500px;" class="mx-auto d-block"></canvas>
+    </section>
+
+  </div>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+
+    <footer class="footer">
+      <div class="container grid grid--footer">
+        <div class="logo-col">
+          <a href="index.html" class="footer-logo">
+            <img class="logo" alt="YumTask logo" src="img/yumtask-logo.png" />
+          </a>
+
+          <ul class="social-links">
+            <li>
+              <a class="footer-link" href="index.html"
+                ><ion-icon class="social-icon" name="logo-instagram"></ion-icon
+              ></a>
+            </li>
+            <li>
+              <a class="footer-link" href="index.html"
+                ><ion-icon class="social-icon" name="logo-facebook"></ion-icon
+              ></a>
+            </li>
+            <li>
+              <a class="footer-link" href="index.html"
+                ><ion-icon class="social-icon" name="logo-twitter"></ion-icon
+              ></a>
+            </li>
+          </ul>
+
+          <p class="copyright">
+            Copyright &copy; <span class="year">2026</span> by YumTask, Inc.
+            All rights reserved.
+          </p>
+        </div>
+
+        <div class="address-col">
+          <p class="footer-heading">Contact us</p>
+          <address class="contacts">
+            <p class="address">
+              Gravias 6, Agia Paraskevi, 153 42
+            </p>
+            <p>
+              <a class="footer-link" href="tel:415-201-6370">210 0600 9800</a
+              ><br />
+              <a class="footer-link" href="mailto:hello@yumtask.com"
+                >hello@yumtask.com</a
+              >
+            </p>
+          </address>
+        </div>
+
+        <nav class="nav-col">
+          <p class="footer-heading">Account</p>
+          <ul class="footer-nav">
+            <li><a class="footer-link" href="index.html#cta">Create account</a></li>
+            <li><a class="footer-link" href="contact.html">Contact Us</a></li>
+          </ul>
+        </nav>
+
+        <nav class="nav-col">
+          <p class="footer-heading">Company</p>
+          <ul class="footer-nav">
+            <li><a class="footer-link" href="about.html">About YumTask</a></li>
+            <li><a class="footer-link" href="tasks.html">Tasks</a></li>
+            <li><a class="footer-link" href="analytics.html">Analytics</a></li>
+          </ul>
+        </nav>
+
+        <nav class="nav-col">
+          <p class="footer-heading">Resources</p>
+          <ul class="footer-nav">
+            <li><a class="footer-link" href="recipes&pricing.html#meals">Recipe directory </a></li>
+            <li><a class="footer-link" href="index.html">Help center</a></li>
+            <li><a class="footer-link" href="index.html">Privacy & terms</a></li>
+          </ul>
+        </nav>
+      </div>
+    </footer>
+  </body>
+</html>

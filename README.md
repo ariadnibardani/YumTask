@@ -18,4 +18,4 @@ A web-based Task Management application that allows users to:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/YumTask.git
+   git clone https://github.com/ariadnibardani/YumTask.git

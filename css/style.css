@@ -18,41 +18,183 @@
 /**************************/
 /* DARK MODE */
 /**************************/
+
 body.dark-mode {
-  background-color: #1e1e1e;
-  color: #f1f1f1;
-  font-family: 'Inter', sans-serif;
-  font-size: 1.6rem;
+  background-color: #121212;
+  color: #ffffff;
 }
 
-body.dark-mode .header,
+/* All main sections */
+body.dark-mode main,
 body.dark-mode .section-hero,
-body.dark-mode .section-testimonials {
-  background-color: #2c2c2c;
+body.dark-mode .section-testimonials,
+body.dark-mode .section-meals,
+body.dark-mode .section-how,
+body.dark-mode .section-featured,
+body.dark-mode .section-cta,
+body.dark-mode .section-pricing,
+body.dark-mode .section-carousel,
+body.dark-mode .section-api,
+body.dark-mode .section-latest-activity,
+body.dark-mode .section-tasks,
+body.dark-mode .about-premium,
+body.dark-mode .team-section,
+body.dark-mode .tech-section,
+body.dark-mode .highlight-section {
+  background-color: #121212 !important;
+}
+
+/* Cards & Containers */
+body.dark-mode .about-card,
+body.dark-mode .feature-card,
+body.dark-mode .analytics-chart-card,
+body.dark-mode .analytics-stat-card,
+body.dark-mode #task-form,
+body.dark-mode #task-table,
+body.dark-mode #contact-form,
+body.dark-mode canvas,
+body.dark-mode .pricing-plan,
+body.dark-mode .meal,
+body.dark-mode .cta,
+body.dark-mode #activity-list li {
+  background-color: #1e1e1e !important;
+  color: #ffffff !important;
+  box-shadow: none;
+}
+
+/* Text */
+body.dark-mode p,
+body.dark-mode span,
+body.dark-mode li,
+body.dark-mode label,
+body.dark-mode th,
+body.dark-mode td,
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4,
+body.dark-mode h5 {
+  color: #ffffff !important;
+}
+
+/* Navigation */
+body.dark-mode .header {
+  background-color: #121212 !important;
 }
 
 body.dark-mode .main-nav-link {
-  color: #ddd;
+  color: #ffffff !important;
 }
 
 body.dark-mode .main-nav-link:hover,
-body.dark-mode .main-nav-link:active {
-  color: #e67e22;
-}
-
 body.dark-mode .main-nav-link.active {
-  border-bottom: 3px solid #e67e22;
+  color: #e67e22 !important;
+}
+
+/* Buttons */
+body.dark-mode .btn,
+body.dark-mode .btn-primary,
+body.dark-mode .btn-outline,
+body.dark-mode .btn-go-to-tasks,
+body.dark-mode .btn--full,
+body.dark-mode .analytics-back-btn,
+body.dark-mode #contact-form button {
+  background-color: #e67e22 !important;
+  color: #ffffff !important;
+  border: none;
+}
+
+body.dark-mode .btn:hover,
+body.dark-mode .btn-primary:hover,
+body.dark-mode .btn-outline:hover,
+body.dark-mode .btn-go-to-tasks:hover,
+body.dark-mode .btn--full:hover,
+body.dark-mode .analytics-back-btn:hover,
+body.dark-mode #contact-form button:hover {
+  background-color: #cf711f !important;
+}
+
+/* Inputs */
+body.dark-mode input,
+body.dark-mode select,
+body.dark-mode textarea,
+body.dark-mode .form-control,
+body.dark-mode .form-select {
+  background-color: #1e1e1e !important;
+  color: #ffffff !important;
+  border: 1px solid #333 !important;
+}
+
+body.dark-mode input::placeholder,
+body.dark-mode textarea::placeholder {
+  color: #bbbbbb;
+}
+
+/* Tables */
+body.dark-mode #task-table thead {
+  background-color: #e67e22 !important;
+  color: #ffffff !important;
+}
+
+body.dark-mode #task-table tbody tr:hover {
+  background-color: #2a2a2a !important;
+}
+
+/* Progress Bars */
+
+body.dark-mode .progress-bar {
+  background-color: #2a2a2a !important;
+}
+
+body.dark-mode .progress-fill {
+  background-color: #e67e22 !important;
+}
+
+body.dark-mode .section-api {
+  background-color: #121212; 
+  color: #ffffff; 
+}
+
+body.dark-mode .section-api .heading-secondary {
+  color: #ffffff; 
+}
+
+/* Quote box */
+body.dark-mode #quote {
+  background-color: #1e1e1e; 
+  color: #f0f0f0; 
+  border-left: 5px solid #e67e22; 
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.5); 
+}
+
+
+/* Borders */
+body.dark-mode hr,
+body.dark-mode .footer {
+  border-color: #333;
+}
+
+/* Footer */
+body.dark-mode .footer {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+body.dark-mode .footer-link {
+  color: #dddddd;
+}
+
+body.dark-mode .footer-link:hover {
   color: #e67e22;
 }
 
-body.dark-mode .main-nav-link.nav-cta {
-  color: #fff;
-  background-color: #e67e22;
+body.dark-mode .logos img {
+  filter: brightness(0) invert(1);
+  opacity: 0.8;
 }
 
-body.dark-mode .main-nav-link.nav-cta:hover,
-body.dark-mode .main-nav-link.nav-cta:active {
-  background-color: #cf711f;
+body.dark-mode .logos img:hover {
+  opacity: 1;
 }
 
 /* Dark Mode Toggle Button */
@@ -276,8 +418,8 @@ body.dark-mode #darkToggle:hover {
 
 .logos img {
   height: 3.2rem;
-  filter: brightness(0);
-  opacity: 50%;
+  opacity: 0.6;
+  transition: all 0.3s ease;
 }
 
 /**************************/
@@ -988,34 +1130,6 @@ body.dark-mode #darkToggle:hover {
   transform: translateY(-6px);
 }
 
-/**************/
-/* DARK MODE */
-/**************/
-
-body.dark-mode .about-premium {
-  background: linear-gradient(135deg, #1c1c1c, #242424);
-}
-
-body.dark-mode .about-card,
-body.dark-mode .feature-card {
-  background: #2a2a2a;
-  color: #eee;
-}
-
-body.dark-mode .about-header h1 {
-  color: #fff;
-}
-
-body.dark-mode .about-header p,
-body.dark-mode .about-card p,
-body.dark-mode .feature-card p {
-  color: #bbb;
-}
-
-body.dark-mode .about-card h2 {
-  color: #ff922b;
-}
-
 /*******************/
 /* CONTACT PAGE */
 /*****************/
@@ -1113,31 +1227,6 @@ body.dark-mode .about-card h2 {
   transform: scale(0.98);
 }
 
-/* DARK MODE */
-body.dark-mode #contact-form {
-  background-color: #2c2c2c;
-}
-
-body.dark-mode #contact-form label,
-body.dark-mode #contact-form input,
-body.dark-mode #contact-form textarea {
-  color: #f1f1f1;
-}
-
-body.dark-mode #contact-form input,
-body.dark-mode #contact-form textarea {
-  background-color: #3a3a3a;
-  border-color: #555;
-}
-
-body.dark-mode #contact-form button {
-  background-color: #e67e22;
-  color: #fff;
-}
-
-body.dark-mode #contact-form button:hover {
-  background-color: #cf711f;
-}
 
 /*******************/
 /* API SECTION    */
@@ -1293,37 +1382,6 @@ body.dark-mode #contact-form button:hover {
 
 .back-wrapper {
   margin-bottom: 3rem;
-}
-
-/*************/
-/* DARK MODE */
-/*************/
-
-body.dark-mode main {
-  background: linear-gradient(135deg, #1f1f1f, #2a2a2a);
-}
-
-body.dark-mode .dashboard-title {
-  color: #fff;
-}
-
-body.dark-mode .analytics-chart-card,
-body.dark-mode .analytics-stat-card {
-  background: rgba(40, 40, 40, 0.85);
-  box-shadow: none;
-}
-
-body.dark-mode .analytics-stat-card h5 {
-  color: #aaa;
-}
-
-body.dark-mode .analytics-stat-card p,
-body.dark-mode .stat-icon {
-  color: #ff922b;
-}
-
-body.dark-mode .progress-bar {
-  background-color: #333;
 }
 
 /**************************/
@@ -1483,43 +1541,6 @@ section canvas {
     opacity: 1;
     transform: translateY(0);
   }
-}
-
-/**************/
-/* DARK MODE */
-/************/
-
-body.dark-mode main {
-  background-color: #121212;
-}
-
-body.dark-mode #task-form,
-body.dark-mode #task-table,
-body.dark-mode canvas {
-  background-color: #2c2c2c;
-  color: #f1f1f1;
-}
-
-body.dark-mode #task-table thead {
-  background-color: #e67e22 !important;
-}
-
-body.dark-mode #task-table tbody tr:hover {
-  background-color: #3a3a3a !important;
-}
-
-body.dark-mode .form-control,
-body.dark-mode .form-select {
-  background-color: #3a3a3a;
-  color: #ffffff;
-  border-color: #555;
-}
-
-body.dark-mode label,
-body.dark-mode th,
-body.dark-mode td,
-body.dark-mode h5 {
-  color: #f1f1f1;
 }
 
 /***********/

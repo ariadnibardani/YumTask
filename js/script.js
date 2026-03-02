@@ -13,12 +13,19 @@ function saveData() {
 //////////////////////////////////////////////////
 // DOMContentLoaded INIT
 
+
 document.addEventListener("DOMContentLoaded", function () {
 
-  // ---------- DARK MODE ----------
+  //////////////////////////////////////////////////
+  // DARK MODE
+
   const toggleBtn = document.getElementById("darkToggle");
   const savedTheme = localStorage.getItem("theme");
-  if (savedTheme === "dark") document.body.classList.add("dark-mode");
+
+  if (savedTheme === "dark") {
+    document.body.classList.add("dark-mode");
+  }
+
   if (toggleBtn) {
     toggleBtn.addEventListener("click", function () {
       document.body.classList.toggle("dark-mode");
@@ -27,78 +34,79 @@ document.addEventListener("DOMContentLoaded", function () {
         document.body.classList.contains("dark-mode") ? "dark" : "light"
       );
     });
+  }
+ 
 
-      // ---------- SET YEAR ----------
+  //////////////////////////////////////////////////
+  // SET FOOTER YEAR
+
   const yearSpans = document.querySelectorAll(".year");
-  yearSpans.forEach(span => span.textContent = new Date().getFullYear());
+  yearSpans.forEach(span => {
+    span.textContent = new Date().getFullYear();
+  });
+
+  //////////////////////////////////////////////////
+  // PREVENT PAST DATES
+
+  const dateInput = document.getElementById("task-date");
+  if (dateInput) {
+    const today = new Date().toISOString().split("T")[0];
+    dateInput.setAttribute("min", today);
   }
 
-  
-    //////////////////////////////////////////////////
-  // CONTACT FORM VALIDATION + CONFIRMATION
+  //////////////////////////////////////////////////
+  // TASK FORM
 
-  const contactForm = document.getElementById("contact-form");
-
-  if (contactForm) {
-
-    contactForm.addEventListener("submit", function (event) {
-      event.preventDefault();
-
-      // Bootstrap validation
-      if (!contactForm.checkValidity()) {
-        event.stopPropagation();
-        contactForm.classList.add("was-validated");
-        return;
-      }
-
-      // Get field values
-      const name = document.getElementById("name").value.trim();
-      const email = document.getElementById("email").value.trim();
-      const subject = document.getElementById("subject").value.trim();
-      const message = document.getElementById("message").value.trim();
-
-      // Insert values into modal
-      const modalBody = document.getElementById("modal-body-content");
-      if (modalBody) {
-        modalBody.innerHTML = `
-          <p><strong>Name:</strong> ${name}</p>
-          <p><strong>Email:</strong> ${email}</p>
-          <p><strong>Subject:</strong> ${subject}</p>
-          <p><strong>Message:</strong><br>${message}</p>
-        `;
-      }
-
-      // Show Bootstrap modal
-      const modalElement = document.getElementById("confirmationModal");
-      if (modalElement) {
-        const modal = new bootstrap.Modal(modalElement);
-        modal.show();
-      }
-
-      // Reset form
-      contactForm.reset();
-      contactForm.classList.remove("was-validated");
-    });
-
-  }
-
-  // ---------- TASK FORM ----------
   const taskForm = document.getElementById("task-form");
+
   if (taskForm) {
     taskForm.addEventListener("submit", function (e) {
       e.preventDefault();
+
       const nameEl = document.getElementById("task-name");
       const descEl = document.getElementById("task-desc");
       const dateEl = document.getElementById("task-date");
       const priorityEl = document.getElementById("task-priority");
 
+      const name = nameEl.value.trim();
+      const desc = descEl.value.trim();
+      const date = dateEl.value;
+      const priority = priorityEl.value;
+
+      //////////////////////////////////////////////////
+      // VALIDATION
+
+      if (name.length === 0 || desc.length === 0) {
+        alert("Please fill all fields.");
+        return;
+      }
+
+      if (name.length > 50) {
+        alert("Task name must be under 50 characters.");
+        return;
+      }
+
+      if (desc.length > 100) {
+        alert("Description must be under 100 characters.");
+        return;
+      }
+
+      const today = new Date().toISOString().split("T")[0];
+      if (date < today) {
+        alert("You cannot select a past date.");
+        return;
+      }
+
+      //////////////////////////////////////////////////
+      // CREATE NEW TASK
+
       const newTask = {
         id: Date.now(),
-        name: nameEl.value,
-        desc: descEl.value,
-        date: dateEl.value,
-        priority: priorityEl.value,
-        completed: false,
+        name: name,
+        desc: desc,
+        date: date,
+        priority: priority,
+        completed: false
       };
 
       tasks.push(newTask);
@@ -115,24 +123,29 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  
-  // ---------- INITIAL PAGE RENDER ----------
+  //////////////////////////////////////////////////
+  // INITIAL RENDER
+
   if (document.getElementById("task-table")) renderTasks();
   if (document.getElementById("activity-list")) renderActivity();
+
   if (document.getElementById("taskChart")) {
     renderChart();
     updateAnalyticsStats();
   }
+
   if (document.getElementById("quote")) fetchQuote();
 
-  // ---------- FILTERS ----------
+  //////////////////////////////////////////////////
+  // FILTERS
+
   const filterStatus = document.getElementById("filter-status");
   const filterPriority = document.getElementById("filter-priority");
   const sortTasks = document.getElementById("sort-tasks");
 
-  if (filterStatus) filterStatus.addEventListener("change", () => renderTasks());
-  if (filterPriority) filterPriority.addEventListener("change", () => renderTasks());
-  if (sortTasks) sortTasks.addEventListener("change", () => renderTasks());
+  if (filterStatus) filterStatus.addEventListener("change", renderTasks);
+  if (filterPriority) filterPriority.addEventListener("change", renderTasks);
+  if (sortTasks) sortTasks.addEventListener("change", renderTasks);
 
 });
 
@@ -271,20 +284,45 @@ function renderChart() {
 
   if (chart) chart.destroy();
 
-  chart = new Chart(canvas, {
-    type: "pie",
-    data: {
-      labels: ["Completed", "Pending"],
-      datasets: [{
-        data: [completed, pending],
-        backgroundColor: ["#2f9e44", "#e03131"],
-      }]
-    },
-    options: {
-      responsive: true,
-      plugins: { legend: { position: "bottom" } }
-    }
-  });
+  if (window.location.pathname.includes("tasks.html")) {
+
+    chart = new Chart(canvas, {
+      type: "pie",
+      data: {
+        labels: ["Completed", "Pending"],
+        datasets: [{
+          data: [completed, pending],
+          backgroundColor: ["#2f9e44", "#e03131"]
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { position: "bottom" }
+        }
+      }
+    });
+
+  } else {
+    chart = new Chart(canvas, {
+      type: "bar",
+      data: {
+        labels: ["Completed", "Pending"],
+        datasets: [{
+          data: [completed, pending],
+          backgroundColor: ["#2f9e44", "#e03131"],
+          borderRadius: 10,
+          barThickness: 40
+        }]
+      },
+      options: {
+        indexAxis: "y",
+        responsive: true,
+        plugins: { legend: { display: false } },
+        scales: { x: { beginAtZero: true } }
+      }
+    });
+  }
 }
 
 //////////////////////////////////////////////////

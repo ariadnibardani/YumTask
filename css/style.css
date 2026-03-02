@@ -249,6 +249,39 @@ body.dark-mode .pricing-plan--complete .btn--full {
   color: #ffffff;
 }
 
+body.dark-mode #task-table {
+  background-color: #1e1e1e;
+  color: #ffffff;
+}
+
+body.dark-mode #task-table thead {
+  background-color: #121212;
+  color: #1e1e1e;
+}
+
+body.dark-mode #task-table tbody tr {
+  background-color: #1e1e1e !important;
+  color: #1e1e1e !important;
+}
+
+body.dark-mode #task-table tbody tr:nth-of-type(odd) {
+  background-color: #242424 !important;
+}
+
+body.dark-mode #task-table td,
+body.dark-mode #task-table th {
+  color: #1e1e1e !important;
+}
+
+body.dark-mode #task-summary {
+  color: #ffffff;
+}
+
+body.dark-mode #task-summary h5,
+body.dark-mode #task-summary p {
+  color: #ffffff !important;
+}
+
 /* Borders */
 body.dark-mode hr,
 body.dark-mode .footer {

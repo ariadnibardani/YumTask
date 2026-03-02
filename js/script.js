@@ -15,10 +15,6 @@ function saveData() {
 
 document.addEventListener("DOMContentLoaded", function () {
 
-  // ---------- SET YEAR ----------
-  const yearSpans = document.querySelectorAll(".year");
-  yearSpans.forEach(span => span.textContent = new Date().getFullYear());
-
   // ---------- DARK MODE ----------
   const toggleBtn = document.getElementById("darkToggle");
   const savedTheme = localStorage.getItem("theme");
@@ -31,8 +27,13 @@ document.addEventListener("DOMContentLoaded", function () {
         document.body.classList.contains("dark-mode") ? "dark" : "light"
       );
     });
+
+      // ---------- SET YEAR ----------
+  const yearSpans = document.querySelectorAll(".year");
+  yearSpans.forEach(span => span.textContent = new Date().getFullYear());
   }
 
+  
     //////////////////////////////////////////////////
   // CONTACT FORM VALIDATION + CONFIRMATION
 

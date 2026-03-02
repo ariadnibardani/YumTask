@@ -1611,6 +1611,59 @@ main {
   border: none;
 }
 
+#task-table .btn,
+#task-table .btn-primary,
+#task-table .btn-outline,
+#task-table .btn-edit,
+#task-table .btn-delete {
+  font-size: 1.4rem;        
+  padding: 0.8rem 1.6rem;   
+  border-radius: 6px;     
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  min-width: 6rem;          
+  text-align: center;
+  transition: all 0.3s;
+  display: inline-block;
+}
+
+#task-table .btn:hover,
+#task-table .btn-primary:hover,
+#task-table .btn-outline:hover,
+#task-table .btn-edit:hover,
+#task-table .btn-delete:hover {
+  transform: translateY(-2px);
+  opacity: 0.95;
+}
+
+#task-table .btn:active,
+#task-table .btn-primary:active,
+#task-table .btn-outline:active,
+#task-table .btn-edit:active,
+#task-table .btn-delete:active {
+  transform: scale(0.97);
+}
+
+/* Optional: color coding */
+#task-table .btn-edit {
+  background-color: #e67e22;
+  color: #fff;
+}
+
+#task-table .btn-edit:hover {
+  background-color: #cf711f;
+}
+
+#task-table .btn-delete {
+  background-color: #e03131;
+  color: #fff;
+}
+
+#task-table .btn-delete:hover {
+  background-color: #c12b2b;
+}
+
 #task-summary {
   margin-top: 6.4rem;
 }

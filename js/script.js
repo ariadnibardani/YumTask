@@ -13,7 +13,6 @@ function saveData() {
 //////////////////////////////////////////////////
 // DOMContentLoaded INIT
 
-
 document.addEventListener("DOMContentLoaded", function () {
 
   //////////////////////////////////////////////////
@@ -36,7 +35,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
  
-
   //////////////////////////////////////////////////
   // SET FOOTER YEAR
 
